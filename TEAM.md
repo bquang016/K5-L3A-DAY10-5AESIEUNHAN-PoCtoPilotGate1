@@ -2,9 +2,9 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng):
-- Lớp: `L3A` / `L3B`
-- Repo của bàn: `K5-<L3A|L3B>-DAY10-<TenNhom>-PoCtoPilotGate1`
+- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): 5AESIEUNHAN
+- Lớp: `L3A`
+- Repo của bàn: `K5-L3A-DAY10-5AESIEUNHAN-PoCtoPilotGate1`
 - Thẻ sự cố đã bốc (S1–S8):
 
 ## Thành viên
@@ -13,10 +13,11 @@ Họ tên đầy đủ và MSSV của **mọi** thành viên; thêm dòng nếu 
 
 | STT | Họ và tên | MSSV | Vai | Trưởng nhóm |
 | --: | --------- | ---- | --- | :---------: |
-|   1 |           |      |     |             |
-|   2 |           |      |     |             |
-|   3 |           |      |     |             |
-|   4 |           |      |     |             |
+|   1 |      Bùi Đăng Quang     |   2A202603640   |   Kỹ sư cổng  |       x      |
+|   2 |      Lê Hoàng Sơn     |   2A202603662   |   Kinh doanh  |             |
+|   3 |      Đặng Việt Anh     |    2A202603685  |   Sản phẩm (PO)  |             |
+|   4 |       Hà Huy Thái    |    2A202603682  |  Vận hành   |             |
+|   5 |       Chu Thân Nhất    |    2A202603649  |  Pháp lý   |             |
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
@@ -24,7 +25,7 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 
 Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
 
-## HoVaTen-MSSV
+## DangVietAnh-2A202603685
 
 ### Phần việc phụ trách
 
