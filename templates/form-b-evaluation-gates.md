@@ -165,15 +165,14 @@ mà cả bàn chưa nghĩ tới, không phải tả lại nhánh đã biết.
 **Câu hỏi dẫn dắt:** tool nào tạo ra hậu quả không đảo ngược? Mỗi tham số của tool đó lấy từ đâu (ticket, DB, model tự suy)?
 Với mỗi guideword: hậu quả cho ai, hiện có gì ngăn, cần thêm gate ở tầng nào (phát hiện / chặn / giới hạn thiệt hại)?
 
-Tool chọn phân tích: `________________` (gợi ý: `issue_refund`, `file_carrier_fault`, `notify_carrier`)
+Tool chọn phân tích: `file_carrier_fault` và `notify_carrier` (lệnh ghi gây tác động tới hãng / bên thứ ba)
 
 | Tham số / dòng dữ liệu | Guideword | Lệch cụ thể (viết bằng dữ kiện của lab) | Hậu quả, cho ai | Hiện có gì ngăn? | Gate đề xuất + tầng |
 |---|---|---|---|---|---|
-| | WRONG | | | | |
-| | INVALID | | | | |
-| | INCOMPLETE | | | | |
-| | PERTURBED | | | | |
-| | INCAPABLE | | | | |
+| `file_carrier_fault`: `carrier_id`, `delay_days`, nguyên nhân tracking | WRONG | Ticket đổ lỗi cho hãng ở `O-1007-P1`, nhưng tracking ghi `delay_cause=MERCHANT_HANDOVER`; nguyên nhân này không nằm trong `fault_causes` của policy REFUND-v3 đang hiệu lực ngày `2026-11-16`. | Ghi lỗi oan cho LGX; hãng/tài xế có thể bị phạt hoặc mất uy tín dù dữ liệu nguồn quy nguyên nhân cho khâu bàn giao của shop. | Hiện `config/operating_gates.json` chưa bật `carrier_fault_requires_recorded_cause`; tool ghi đúng tham số model đưa vào. | Bật `legal.carrier_fault_requires_recorded_cause=true`; trong `write_gate`, lấy kiện theo `order_id+parcel_id`, tính ngày từ tracking và nguyên nhân từ DB/chính sách hiệu lực; nếu lệch thì chặn/chuyển người (chặn). |
+| `file_carrier_fault`: chính sách áp dụng cho ngày xử lý | INVALID | Dùng REFUND-v4 trước `effective_from=2026-12-01` trong khi `as_of=2026-11-16`; v4 chỉ cho ghi lỗi nguyên nhân `CARRIER`, còn v3 đang hiệu lực cho phép nguyên nhân `CARRIER` và `FORCE_MAJEURE`. | Hãng bị áp sai quy tắc; khách và LogiX nhận quyết định không nhất quán. | `effective_policy` có thể chọn policy theo `as_of`, nhưng tool tự nó không xác thực policy_id/phiên bản từ model. | `pre_guard` ghim `policy_id` theo `effective_policy(ctx.tools.lookup_policies(), ctx.as_of)`; `write_gate` từ chối khi policy/đầu vào không cùng phiên bản (chặn). |
+| `file_carrier_fault`: `parcel_id` và `delay_cause` | INCOMPLETE | `O-1010-P1` và `O-1012-P1` có `delay_cause=null`; không có nguyên nhân ghi nhận để quy lỗi. | Hãng bị ghi lỗi không có chứng cứ; đội đối soát phải gỡ lỗi và xử lý khiếu nại. | Hiện cổng `carrier_fault_requires_recorded_cause=false`; nếu thiếu kiện, kiểm tra bổ sung trong tool chỉ trả None khi không tìm thấy parcel. | Bật `legal.carrier_fault_requires_recorded_cause=true`; thiếu cause hoặc parcel thì không ghi lỗi, tạo hàng chờ người đối soát (chặn/giới hạn thiệt hại). |
+| `notify_carrier`: `payload` lấy từ nội dung ticket / model | PERTURBED | Khách chèn tên, số điện thoại hoặc địa chỉ của người nhận quà vào chữ tự do; model chép nguyên văn vào payload gửi hãng. Ví dụ đơn quà `O-1024` có người nhận khác chủ tài khoản. | Dữ liệu cá nhân của khách/người nhận quà rời LogiX tới bên thứ ba không cần thiết; người nhận chịu ảnh hưởng và LogiX phải xử lý sự cố dữ liệu. | Chưa có danh sách chặn: `pii_fields_blocked_to_third_party=[]`; tool chỉ loại trường nếu cấu hình có tên trường, không quét PII nằm trong đoạn văn tự do. | Đặt `legal.pii_fields_blocked_to_third_party` gồm `name`, `phone`, `street`, `recipient`; chỉ dựng payload từ allowlist chính sách (`order_id`, `parcel_id`, `district`, `delay_days`), không chép văn bản ticket; chặn/gỡ trường nhạy cảm trước khi gửi. |
 
 Không bắt buộc điền đủ năm dòng. Bắt buộc: **ít nhất ba dòng, trong đó một dòng là nhánh bàn chưa thấy trên trace**.
 
@@ -188,8 +187,8 @@ Không bắt buộc điền đủ năm dòng. Bắt buộc: **ít nhất ba dòn
 
 | Thành phần | Guideword | Lệch cụ thể | Hậu quả, cho ai | Cổng đề xuất: code hay con số nào trong `config/operating_gates.json` |
 |---|---|---|---|---|
-| | | | | |
-| | | | | |
+| Người duyệt vận hành | INCAPABLE | Theo `ops_facts`, mặc định 1 người duyệt được 6 ca/giờ; giờ cao điểm dồn 14 ca/giờ thì 8 ca vượt công suất trong giờ đó, SLA nhận xử lý là 60 phút. | Khách chờ quá SLA; nhân viên quá tải có thể duyệt vội hoặc bỏ sót khiếu nại của hãng. | `operations.reviewers_on_shift=1`; `review_capacity_per_hour` và `max_queue_wait_minutes` hiện null, chưa có ngưỡng ùn. | Đặt `operations.reviewers_on_shift` theo lịch trực, `review_capacity_per_hour=6` mỗi người, `max_queue_wait_minutes=60`; khi hàng chờ vượt công suất gọi người dự phòng/thu hẹp pilot, quá SLA thì tạm ngừng lệnh ghi cần duyệt. |
+| Ngân sách Finance | WRONG | Nhầm trần hoàn tự động 2.000.000đ/ngày trong `ops_limits` với tổng mọi khoản hoàn; hoặc ngưỡng bị cấu hình cao hơn trần Finance. | LogiX vượt ngân sách và không còn tiền cho ca cần xử lý; Finance chịu chi phí ngoài kế hoạch. | `business.daily_refund_cap_vnd=null`; tool chưa áp cổng cap nếu chưa đặt giá trị. | Đặt `business.daily_refund_cap_vnd=2000000` theo `ops_limits.daily_auto_refund_budget_vnd`; theo dõi tổng hoàn tự động trong ngày và chuyển người khi chạm trần (giới hạn thiệt hại). |
 
 **Ví dụ mẫu (`issue_refund`, đừng chép):** tham số `amount_vnd` · WRONG · số tiền tính từ số ngày khách tự khai · LogiX mất
 tiền, hãng bị kéo theo một lỗi · hiện chỉ có trần "không vượt tổng tiền đơn" · cổng ghi so với quyền lợi tính từ DB (chặn).
