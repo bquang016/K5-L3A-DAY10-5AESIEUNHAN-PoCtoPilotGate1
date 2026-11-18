@@ -19,7 +19,13 @@ def escalation_rate(trials):
     return sum(t["status"] == "escalated" for t in trials) / max(1, len(trials))
 
 
+def invalid_approval_rate(trials):
+    """Tỉ lệ ca có sự kiện approval_used (dùng mã duyệt đặc biệt của trưởng ca)."""
+    return sum(any(e.get("type") == "approval_used" for e in t.get("events", [])) for t in trials) / max(1, len(trials))
+
+
 MONITORS = {
     "escalation_rate": escalation_rate,     # có sẵn; KHÔNG tính là metric mới của đội
+    "invalid_approval_rate": invalid_approval_rate,  # metric mới của đội cho Sự cố S8
 }
 STARTER_MONITORS = ("escalation_rate",)

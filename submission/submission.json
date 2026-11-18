@@ -1,12 +1,18 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "team": "K5-L3A-DAY10-5AESIEUNHAN-PoCtoPilotGate1",
+  "members": [
+    "BuiDangQuang-2A202603640",
+    "LeHoangSon-2A202603662",
+    "DangVietAnh-2A202603685",
+    "HaHuyThai-2A202603682",
+    "ChuThanNhat-2A202603649"
+  ],
+  "incident": "S8",
+  "decision_v1": "Tiếp tục",
+  "decision_v2": "Tiếp tục",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Đội ngũ thiết kế ngầm giả định rằng danh sách các mã phê duyệt trong cơ sở dữ liệu approvals luôn phản ánh đúng ý chí và thẩm quyền hiện tại của trưởng ca CSKH mà không kiểm tra chéo ngữ cảnh áp dụng thực tế như thời hạn, phạm vi đơn và trạng thái thu hồi.",
+    "reduce_or_prevent": "Cổng kiểm soát của đội thực sự NGĂN ĐƯỢC tác hại vì cổng code write_gate chặn cứng ở tầng ghi lệnh, bắt buộc kiểm tra đồng thời 5 thuộc tính hợp lệ của phê duyệt trước khi ghi sổ cái, nếu không thỏa mãn sẽ lập tức chuyển quyền xử lý về cho con người qua cơ chế Verdict.escalate.",
+    "measure_in_pilot": "Cần đo lường lại tỉ lệ chấp thuận thực tế của nhân viên CSKH đối với các quyết định giải thích tự động (decision_note), tần suất phát sinh ngoại lệ cần phê duyệt thủ công ngoài giờ hành chính, và thời gian thực tế xử lý một ca kiểm tra mẫu trong môi trường pilot thực tế."
   }
 }
