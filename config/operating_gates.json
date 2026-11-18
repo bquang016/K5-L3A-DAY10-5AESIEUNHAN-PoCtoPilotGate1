@@ -7,13 +7,17 @@
     "roi_min": null
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Có 1 lần lộ PII cho bên thứ ba: tắt notify_carrier ngay và báo PIC Ops cùng Pháp lý.",
+      "Có 1 lần ghi lỗi oan cho hãng hoặc thiếu nguyên nhân tracking: tắt file_carrier_fault, chuyển hồ sơ cho NV-OANH đối soát.",
+      "Hàng chờ vượt công suất 6 ca/giờ: NV-TUNG gọi người dự phòng; ca chờ chạm 60 phút thì thu hẹp pilot hoặc tắt thao tác ghi cần duyệt, chuyển ca cho CSKH."
+    ],
+    "alert_channel": "ĐỀ XUẤT: kênh Teams trực pilot Ops-Pháp lý; NV-TUNG xác nhận/tạo trước pilot",
     "decision_note": false,
     "review_sampling_pct": 0
   },
