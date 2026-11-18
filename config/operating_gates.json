@@ -1,10 +1,14 @@
 {
   "_huong_dan": "Cổng kinh doanh, vận hành, pháp lý mà trợ lý PHẢI tuân theo. Bàn điền ở vòng 1, chốt bằng python3 -m lab10.checkpoint, rồi được sửa tiếp ở vòng 2. null = chưa đặt cổng này. Giải thích từng dòng: docs/guide.md, mục Cổng trong config (#ban-do).",
   "business": {
-    "daily_refund_cap_vnd": null,
-    "cost_budget_per_ticket_vnd": null,
-    "pilot_scope": {"mode": "all", "warehouses": [], "percent": 100},
-    "roi_min": null
+    "daily_refund_cap_vnd": 2000000,
+    "cost_budget_per_ticket_vnd": 1500,
+    "pilot_scope": {
+      "mode": "all",
+      "warehouses": [],
+      "percent": 100
+    },
+    "roi_min": 0.2
   },
   "operations": {
     "pic": "NV-TUNG",
@@ -17,12 +21,19 @@
       "Có 1 lần ghi lỗi oan cho hãng hoặc thiếu nguyên nhân tracking: tắt file_carrier_fault, chuyển hồ sơ cho NV-OANH đối soát.",
       "Hàng chờ vượt công suất 6 ca/giờ: NV-TUNG gọi người dự phòng; ca chờ chạm 60 phút thì thu hẹp pilot hoặc tắt thao tác ghi cần duyệt, chuyển ca cho CSKH."
     ],
-    "alert_channel": "ĐỀ XUẤT: kênh Teams trực pilot Ops-Pháp lý; NV-TUNG xác nhận/tạo trước pilot",
-    "decision_note": false,
+    "alert_channel": "#ops-cskh-alerts",
+    "decision_note": true,
     "review_sampling_pct": 0
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": ["name", "phone", "street", "recipient"],
+    "pii_fields_blocked_to_third_party": [
+      "name",
+      "phone",
+      "street",
+      "recipient",
+      "customer_name",
+      "address"
+    ],
     "carrier_fault_requires_recorded_cause": true
   }
 }
