@@ -24,7 +24,7 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
-- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): …
+- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): Đối chiếu và khớp chính xác sổ nội bộ với số liệu của hãng và shop, để phát hiện và xử lý kịp thời các khoản chênh lệch.
 - Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): …
 
 ---
