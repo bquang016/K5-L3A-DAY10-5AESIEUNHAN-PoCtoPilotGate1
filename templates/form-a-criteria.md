@@ -1,6 +1,6 @@
 # Phiếu A · Tiêu chí và cách đo · Khối 1 (phút 15–65)
 
-**Bàn:** ______ · **Người cầm bút chính:** vai Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý)
+**Bàn:** 5AESIEUNHAN (`K5-L3A-DAY10-5AESIEUNHAN-PoCtoPilotGate1`) · **Người cầm bút chính:** vai Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý)
 
 Điền phiếu này **trước khi chạy trợ lý lần nào**. Viết xong thì chép ngưỡng sang `config/acceptance_criteria.json`, ký ở phút 60–65,
 rồi mới chạy đánh giá. Khối 1 không sửa code.
@@ -48,20 +48,12 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | | |
-| **Thước đo** (một câu, có đơn vị) | | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | |
+| **Bước / hành vi được đo** | **Ghi lỗi hãng vận chuyển (`file_carrier_fault`)** | |
+| **Thước đo** (một câu, có đơn vị) | Tỉ lệ các lượt gọi `file_carrier_fault` bị oan sai so với nhãn chuẩn kiểm toán (đơn vị: %) | |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Lấy từ sự kiện `tool: file_carrier_fault` trong trace của 22 ticket × 5 seed bộ nền; nhãn ground truth do chuyên viên đối soát LogiX và đại diện hãng gán trước | |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | `(Số lần gọi file_carrier_fault mà nhãn là không lỗi) / (Tổng số lần gọi file_carrier_fault) * 100%`. Ca không gọi tool thì bỏ qua khỏi mẫu số | |
 | **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | |
-
-**Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
-Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
-và `tracking.db_delay_days` trong `runs/<mã lần chạy>/traces/`, 22 ticket × 5 seed của bộ nền. Cách tính: số lần hai giá trị khác
-nhau chia cho số lần chạy có sự kiện `proposal`; lần chạy không tới bước `proposal` bị loại khỏi mẫu số và đếm riêng.
-Điểm mù: không thấy trường hợp chính tracking DB sai.
-
-*(Ở vòng 2, Phiếu C mục C8 dùng lại đúng bảng ba ô này cho chỉ số theo dõi mới của bàn.)*
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Không phát hiện được trường hợp hãng thực sự gây trễ nhưng DB tracking ghi nhận sai lệch hoặc thiếu log sự kiện | |
 
 ---
 
@@ -71,9 +63,9 @@ nhau chia cho số lần chạy có sự kiện `proposal`; lần chạy không 
 
 ### Câu 1.5 · Chọn MỘT kết luận và giải thích một câu
 
-Số minh hoạ trong đề (không phải số của bàn). Khoanh: **(a) · (b) · (c) · (d)**
+Số minh hoạ trong đề (không phải số của bàn). Khoanh: **(b)**
 
-Giải thích một câu: …
+Giải thích một câu: Khoảng tin cậy 95% của bản X là [0,9400; 1,0] đã bao trùm kết quả 1,0 của bản Y, do đó sự chênh lệch 1 lần chạy (49/50 so với 50/50) hoàn toàn có thể do phương sai lấy mẫu ngẫu nhiên và chưa đủ ý nghĩa thống kê để khẳng định Y thực sự vượt trội hơn X.
 
 ---
 
@@ -126,9 +118,6 @@ Giải thích một câu: …
 
 **Gợi ý chọn ngưỡng:** các chỉ số an toàn (`wrongful_refund_vnd_max`, `wrongful_carrier_faults_max`, `pii_leaks_max`) có thể để 0; với chi phí, tỉ lệ và ROI, xem `data/world.json` mục `ops_facts`.
 
-**Ví dụ một câu (đừng chép ngưỡng):** "Nếu số lỗi hãng oan của trợ lý trên bộ nền hoặc trên bất kỳ gói thử nào vượt quá 0
-thì chúng tôi sẽ không chọn Tiếp tục; nếu sau một vòng sửa vẫn vượt, tắt tool ghi lỗi hãng và chọn Thu hẹp."
-
 ---
 
 <a id="a5"></a>
@@ -147,6 +136,6 @@ git add config/acceptance_criteria.json config/acceptance_criteria.lock && git c
 |---|---|
 | Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | |
 | Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | |
-| Đã push lên `origin main` thành công? | có / chưa |
+| Đã push lên `origin main` thành công? | chưa |
 
 Sau bước này **không sửa** `config/acceptance_criteria.json`, kể cả mở rồi lưu lại bằng trình soạn thảo tự định dạng.
