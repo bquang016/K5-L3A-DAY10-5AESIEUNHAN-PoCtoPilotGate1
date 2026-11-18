@@ -25,7 +25,7 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
 - Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): …
-- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): …
+- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): Các ca vượt thẩm quyền hoặc chưa đủ căn cứ để trợ lý tự xử lý cần được bàn giao cho đúng người duyệt, kèm thông tin đơn hàng, kết quả tra cứu, lý do chuyển và các thao tác đã thực hiện, để chị Hạnh phân công xử lý trong thời hạn cam kết, tránh bỏ sót ca và quá tải ca trực.
 
 ---
 
