@@ -7,11 +7,11 @@
     "roi_min": null
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
     "stop_conditions": [],
     "alert_channel": "",
     "decision_note": false,

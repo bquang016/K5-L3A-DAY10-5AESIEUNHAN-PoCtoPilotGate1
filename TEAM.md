@@ -31,13 +31,19 @@ Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi ti�
 
 Vận hành. CP2: Phiếu A câu 1.2 phần chị Hạnh; phối hợp câu 1.4 với Chu Thân Nhất, tham gia câu 1.5 và góp ý vận hành cho câu 1.6.
 
+CP3: Phiếu B mục B5 (checklist 9 nhóm việc), lăng kính con người và vận hành ở B6, phần vận hành trong `config/operating_gates.json`, Runbook 1–3 ở B7.5 và giờ cao điểm ở B7.6.
+
 ### Đóng góp cụ thể
 
 Đã viết mục tiêu của chị Hạnh, góp ý khả năng tiếp nhận và xử lý cảnh báo production, giải thích lựa chọn (b) ở câu 1.5 và soát tiêu chí theo tải người duyệt, thời gian chờ, ca ùn, chi phí.
 
+CP3: Điền các mục cần kiểm tra trong checklist B5, nguyên nhân quá tải ca trực ở B6 và thông tin nhân sự/công suất/hạn chờ có sẵn trong dữ liệu lab.
+
 ### Bằng chứng
 
 `templates/form-a-criteria.md`: A1 câu 1.2 dòng chị Hạnh; góp ý vận hành ở A2 câu 1.4; A3 câu 1.5; A4 phần góp ý và bảng bốn câu hỏi soát.
+
+CP3: `templates/form-b-evaluation-gates.md` mục B5, dòng con người và vận hành ở B6, phần đã điền tại B7.5; `config/operating_gates.json` mục `operations`.
 
 ### Exit ticket
 
