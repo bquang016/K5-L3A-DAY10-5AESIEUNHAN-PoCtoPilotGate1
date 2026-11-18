@@ -66,15 +66,53 @@ Học được: `pass_k` luôn nhỏ hơn hoặc bằng `pass_rate`, nên ngư�
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Trưởng nhóm / Kỹ sư cổng. Khối 1: Quản trị Git, cấu hình môi trường, viết Phiếu A câu 1.3 (Offline metric cho `file_carrier_fault`), tham gia giải thích câu 1.5 (khoảng tin cậy), thực hiện Lệnh 1 ký Bản tiêu chí chấp nhận.
 
 ### Đóng góp cụ thể
 
-...
+Thiết kế chỉ số offline đo tỉ lệ ghi lỗi hãng oan sai; phân tích ý nghĩa thống kê của khoảng tin cậy 95% ở câu 1.5; kiểm tra tính hợp lệ và thực hiện ký số, commit, push Bản tiêu chí chấp nhận.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+`templates/form-a-criteria.md`: A2 câu 1.3, A3 câu 1.5; commit `Sign acceptance criteria`.
+
+### Exit ticket
+
+Một điều học được, một điều còn chưa chắc.
+
+
+## LeHoangSon-2A202603662
+
+### Phần việc phụ trách
+
+Kinh doanh. Khối 1: Soạn tiêu chí an toàn tài chính và chi phí ở câu 1.6; phối hợp câu 1.5; chuẩn bị số liệu `business_ops` và trần hoàn tiền ngày.
+
+### Đóng góp cụ thể
+
+Đã hoàn thành các câu tiêu chí cho `wrongful_refund_vnd_max = 0`, `wrongful_carrier_faults_max = 0`, `pii_leaks_max = 0` trong Phiếu A mục A4; góp ý ngưỡng chi phí mỗi ticket ≤ 8.000đ và ROI ≥ 0.2.
+
+### Bằng chứng
+
+PR #4 / commit `3eb7c4a`, `templates/form-a-criteria.md` mục A4.
+
+### Exit ticket
+
+Một điều học được, một điều còn chưa chắc.
+
+
+## ChuThanNhat-2A202603649
+
+### Phần việc phụ trách
+
+Pháp lý. Khối 1: Phiếu A câu 1.2 phần chị Oanh đối soát kế toán; câu 1.4 thiết kế Telemetry production phát hiện thiệt hại đối tác không nhãn; rà soát điều khoản PII và cấn trừ lỗi hãng.
+
+### Đóng góp cụ thể
+
+Đã viết mục tiêu khớp sổ và không tranh chấp đối soát cho chị Oanh ở câu 1.2; thiết kế telemetry đo tỉ lệ khiếu nại phản đối của hãng vận chuyển trong 48h ở câu 1.4; rà soát ngưỡng an toàn PII = 0.
+
+### Bằng chứng
+
+`templates/form-a-criteria.md`: A1 câu 1.2 dòng chị Oanh, A2 câu 1.4 telemetry production.
 
 ### Exit ticket
 
