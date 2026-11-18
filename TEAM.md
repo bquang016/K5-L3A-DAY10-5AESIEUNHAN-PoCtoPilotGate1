@@ -25,6 +25,24 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 
 Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
 
+## HaHuyThai-2A202603682
+
+### Phần việc phụ trách
+
+Vận hành. CP2: Phiếu A câu 1.2 phần chị Hạnh; phối hợp câu 1.4 với Chu Thân Nhất, tham gia câu 1.5 và góp ý vận hành cho câu 1.6.
+
+### Đóng góp cụ thể
+
+Đã viết mục tiêu của chị Hạnh, góp ý khả năng tiếp nhận và xử lý cảnh báo production, giải thích lựa chọn (b) ở câu 1.5 và soát tiêu chí theo tải người duyệt, thời gian chờ, ca ùn, chi phí.
+
+### Bằng chứng
+
+`templates/form-a-criteria.md`: A1 câu 1.2 dòng chị Hạnh; góp ý vận hành ở A2 câu 1.4; A3 câu 1.5; A4 phần góp ý và bảng bốn câu hỏi soát.
+
+### Exit ticket
+
+Một điều học được, một điều còn chưa chắc.
+
 ## DangVietAnh-2A202603685
 
 ### Phần việc phụ trách
