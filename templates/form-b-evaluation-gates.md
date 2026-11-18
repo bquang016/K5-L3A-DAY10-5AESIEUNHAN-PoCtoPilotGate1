@@ -207,15 +207,15 @@ Trạng thái: **Xong** (có bằng chứng) · **Chưa** · **Không áp dụng
 
 | # | Nhóm việc | Bằng chứng lấy từ đâu (đã có sẵn trong lab) | Mục cần kiểm tra | Trạng thái | Bằng chứng | PIC |
 |---|---|---|---|---|---|---|
-| 1 | Chất lượng | Report `lab10.eval` (mã lần chạy) + bảng soát lỗi (Phiếu B mục B2) | | | | |
-| 2 | Dữ liệu | Bản đồ dữ liệu (Phiếu B mục B3, câu 2.3): trường nào là nguồn sự thật, trường nào là bản sao | | | | |
-| 3 | Bảo mật | Một vòng HAZOP với guideword PERTURBED (Phiếu B mục B4): chữ nào đi vào model mà không do LogiX viết | | | | |
-| 4 | Quyền hạn | `config/switches.json` + guard trước lệnh ghi; thẻ S2, S8 có thêm mục mức kiểm soát (Phiếu C mục C3) | | | | |
-| 5 | Hiệu năng, hạ tầng | Đội tự ước tính; HAZOP guideword INCAPABLE: LLM không trả lời thì sao; số người duyệt và số ca mỗi giờ | | | | |
-| 6 | Chi phí | Khối "kinh doanh và vận hành" của report: chi phí mỗi ticket so với làm tay, ROI, tiền LLM ticket đắt nhất; `config/operating_gates.json` mục `business` | | | | |
-| 7 | Vận hành | Runbook (Phiếu B mục B7.5–B7.6) + `config/operating_gates.json` mục `operations` (PIC, người duyệt, số người trực, điều kiện dừng, kênh báo tin) + metric trong `monitors.py` | | | | |
-| 8 | Con người, pháp lý | Bên thứ ba (hãng, tài xế, shop, người nhận quà, người đứng tên duyệt); `config/operating_gates.json` mục `legal`; thẻ S6, S7, S8 có mục riêng ở Phiếu C mục C3 | | | | |
-| 9 | Quyết định | Câu tiêu chí (Phiếu A mục A4) + hash Bản tiêu chí đã ký + quyết định Gate 1 (Phiếu B mục B8, Phiếu C mục C12) | | | | |
+| 1 | Chất lượng | Report `lab10.eval` (mã lần chạy) + bảng soát lỗi (Phiếu B mục B2) | Chạy base/prepared, so với tiêu chí đã ký; phân loại lỗi theo trace | **Chưa** | Chưa có thư mục `runs/`; B2 chưa ghi mã run/bảng soát lỗi | **Bùi Đăng Quang** (Kỹ sư cổng) |
+| 2 | Dữ liệu | Bản đồ dữ liệu (Phiếu B mục B3, câu 2.3): trường nào là nguồn sự thật, trường nào là bản sao | Điền B3, xác định nguồn sự thật, bản sao và một ví dụ drift có chỉ số phát hiện | **Chưa** | `templates/form-b-evaluation-gates.md` mục B3 còn trống | **Đặng Việt Anh** (Sản phẩm/PO) |
+| 3 | Bảo mật | Một vòng HAZOP với guideword PERTURBED (Phiếu B mục B4): chữ nào đi vào model mà không do LogiX viết | Ghi rõ dữ liệu tự do/PII có thể bị chép vào payload gửi hãng và biện pháp giảm thiểu | **Xong** | B4, dòng `notify_carrier` / `payload` / PERTURBED; danh sách chặn PII trong `config/operating_gates.json` | **Chu Thân Nhất** (Pháp lý) |
+| 4 | Quyền hạn | `config/switches.json` + guard trước lệnh ghi; thẻ S2, S8 có thêm mục mức kiểm soát (Phiếu C mục C3) | Rà công tắc và guard; bổ sung bằng chứng kiểm soát từ S2/S8 khi nhận thẻ | **Chưa** | `config/switches.json` hiện bật cả bốn thao tác; `lab10/guards.py` vẫn cho qua; chưa có thẻ S2/S8 | **Bùi Đăng Quang** (Kỹ sư cổng) |
+| 5 | Hiệu năng, hạ tầng | Đội tự ước tính; HAZOP guideword INCAPABLE: LLM không trả lời thì sao; số người duyệt và số ca mỗi giờ | Ghi cách xử lý khi LLM/quota không sẵn sàng; xác nhận năng lực người duyệt và phương án dự phòng | **Chưa** | B4 có kịch bản 1 người/6 ca/giờ và 14 ca/giờ; runbook chưa có phương án dự phòng được Ops xác nhận | **Hà Huy Thái** (Vận hành) |
+| 6 | Chi phí | Khối "kinh doanh và vận hành" của report: chi phí mỗi ticket so với làm tay, ROI, tiền LLM ticket đắt nhất; `config/operating_gates.json` mục `business` | Đặt các cổng business và đối chiếu chi phí/ROI trên report chạy thật | **Chưa** | Các giá trị `business` còn null hoặc scope mặc định; chưa có report trong `runs/` | **Lê Hoàng Sơn** (Kinh doanh) |
+| 7 | Vận hành | Runbook (Phiếu B mục B7.5–B7.6) + `config/operating_gates.json` mục `operations` (PIC, người duyệt, số người trực, điều kiện dừng, kênh báo tin) + metric trong `monitors.py` | Xác nhận kênh trực và người dự phòng; kiểm tra runbook/cổng/metric khớp nhau | **Chưa** | B7.5–B7.6 và `operations` đã điền; kênh Teams còn đề xuất, danh sách dự phòng chưa xác nhận, `monitors.py` chưa có metric mới | **Hà Huy Thái** (Vận hành) |
+| 8 | Con người, pháp lý | Bên thứ ba (hãng, tài xế, shop, người nhận quà, người đứng tên duyệt); `config/operating_gates.json` mục `legal`; thẻ S6, S7, S8 có mục riêng ở Phiếu C mục C3 | Rà người bị ảnh hưởng/đầu mối khiếu nại, chặn PII; cập nhật phân tích thẻ khi được phát | **Chưa** | B4 và `legal` đã có biện pháp; chưa có thẻ sự cố và C3 S6/S7/S8 để hoàn tất rà soát theo thẻ | **Chu Thân Nhất** (Pháp lý) |
+| 9 | Quyết định | Câu tiêu chí (Phiếu A mục A4) + hash Bản tiêu chí đã ký + quyết định Gate 1 (Phiếu B mục B8, Phiếu C mục C12) | Đối chiếu report với tiêu chí đã ký; ghi hash, mã run và quyết định có bằng chứng | **Chưa** | Phiếu B mục B8 còn trống; chưa có run report để làm căn cứ | **Bùi Đăng Quang** (Trưởng nhóm/Kỹ sư cổng) |
 
 Ô "Chưa" có rủi ro cao → chuyển thành một dòng Risk register (Phiếu C mục C10).
 
