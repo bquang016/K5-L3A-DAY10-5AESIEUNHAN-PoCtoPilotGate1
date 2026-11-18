@@ -47,6 +47,25 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
+Sản phẩm (PO). Phiếu A câu 1.1 và câu 1.6 (A4); theo kế hoạch: câu 2.3 (B3), câu 2.9 (`config/operating_gates.json` mục `business`, B7.4), phần kinh doanh của câu 3.5 và quyết định v2 (C12).
+
+### Đóng góp cụ thể
+
+Viết mục tiêu cấp hệ thống ở câu 1.1 (A1). Điền câu "Nếu … thì …" cho `pass_rate_min` (97%) và `pass_k_min` (95%) ở câu 1.6 (A4, bước 1), cùng bộ thử 22 ticket × 5 seed.
+
+### Bằng chứng
+
+Commit `ec3bac5` (merge `5ed0160`, PR #3 từ nhánh `2A202603685`): `templates/form-a-criteria.md`, câu 1.1 và hai dòng `pass_rate_min`, `pass_k_min` trong A4. Mã lần chạy: chưa có, vì tiêu chí chưa ký và chưa chạy đánh giá.
+
+### Exit ticket
+
+Học được: `pass_k` luôn nhỏ hơn hoặc bằng `pass_rate`, nên ngưỡng `pass_k_min` phải đặt thấp hơn `pass_rate_min`. Chưa chắc: công thức ROI và chi phí mỗi ticket có tính tiền người duyệt không; ngưỡng 97% có đủ chặt với bộ 22 ticket × 5 seed không.
+
+
+## BuiDangQuang-2A202603640
+
+### Phần việc phụ trách
+
 Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
 
 ### Đóng góp cụ thể
