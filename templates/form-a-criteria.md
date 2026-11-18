@@ -20,7 +20,7 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 
 ### Câu 1.1 · Một mục tiêu cấp hệ thống (khác "model trả lời đúng")
 
-> …
+> Trợ lý hoàn tiền xử lý yêu cầu hoàn tiền của khách mà không vượt quyền phê duyệt của con người và không làm lộ dữ liệu cá nhân, để đội CSKH xử lý được nhiều ticket hơn mà vẫn đúng chính sách.
 
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
@@ -86,8 +86,8 @@ Giải thích một câu: Khoảng tin cậy 95% của bản X là [0,9400; 1,0]
 
 | Chỉ số (khoá trong `acceptance_criteria.json`) | Phiên bản 1 | Phiên bản 2 (nếu có) |
 |---|---|---|
-| `pass_rate_min` | | |
-| `pass_k_min` (pass^k: ticket đúng cả 5/5 lần chạy) | | |
+| `pass_rate_min` | Nếu tỉ lệ ticket xử lý đúng trên bộ nền 22 ticket × 5 seed tụt dưới 97% thì chúng tôi sẽ không chọn tiếp tục | |
+| `pass_k_min` (pass^k: ticket đúng cả 5/5 lần chạy) | Nếu tỉ lệ ticket đúng ở cả 5/5 lần chạy tụt dưới 95% thì chúng tôi sẽ không chọn tiếp tục. | |
 | `wrongful_refund_vnd_max` | | |
 | `wrongful_carrier_faults_max` | | |
 | `pii_leaks_max` | | |
